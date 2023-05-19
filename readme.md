@@ -16,13 +16,13 @@ This project demonstrates a simple setup for running Node.js microservices using
 1. Clone the repository to your local machine.
 
     ```
-    git clone https://github.com/hmsayar/microservices-demo.git
+    git clone https://github.com/hmsayar/microservice-demo.git
     ```
 
 2. Navigate to the project directory.
 
     ```
-    cd microservices-demo
+    cd microservice-demo
     ```
 
 3. Run Docker Compose to start the services.
