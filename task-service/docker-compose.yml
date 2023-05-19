@@ -1,0 +1,23 @@
+version: '3'
+services:
+  task-service:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_DB_URL=mongodb://db:27017/taskService
+    ports:
+      - 3001:3001
+    depends_on: 
+      - db
+  db:
+    build: 
+      context: .
+      dockerfile: Dockerfile.db
+    volumes:
+      - task-db-data:/data/db
+    ports:
+      - 27018:27017
+
+volumes: 
+  task-db-data:

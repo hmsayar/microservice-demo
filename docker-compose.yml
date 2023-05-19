@@ -1,0 +1,45 @@
+version: '3'
+services:
+  user-service:
+    build: 
+      context: ./user-service
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_DB_URL=mongodb://user-db:27017/userService
+    ports:
+      - 3000:3000
+    depends_on: 
+      - user-db
+
+  user-db:
+    build: 
+      context: ./user-service
+      dockerfile: Dockerfile.db
+    volumes:
+      - user-db-data:/data/db
+    ports:
+      - 27017:27017
+
+  task-service:
+    build: 
+      context: ./task-service
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_DB_URL=mongodb://task-db:27017/taskService
+    ports:
+      - 3001:3001
+    depends_on: 
+      - task-db
+
+  task-db:
+    build: 
+      context: ./task-service
+      dockerfile: Dockerfile.db
+    volumes:
+      - task-db-data:/data/db
+    ports:
+      - 27018:27017
+
+volumes: 
+  user-db-data:
+  task-db-data:
